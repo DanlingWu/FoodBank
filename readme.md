@@ -152,10 +152,10 @@ public class SpringBoot2RestServiceApplication {
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/rest/example/student/Student.java
+### /src/main/java/com/in28minutes/springboot/rest/example/foodbank/Student.java
 
 ```java
-package com.in28minutes.springboot.rest.example.student;
+package com.in28minutes.springboot.rest.example.foodbank;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -202,10 +202,10 @@ public class Student {
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/rest/example/student/StudentNotFoundException.java
+### /src/main/java/com/in28minutes/springboot/rest/example/foodbank/StudentNotFoundException.java
 
 ```java
-package com.in28minutes.springboot.rest.example.student;
+package com.in28minutes.springboot.rest.example.foodbank;
 
 public class StudentNotFoundException extends RuntimeException {
 
@@ -217,25 +217,25 @@ public class StudentNotFoundException extends RuntimeException {
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/rest/example/student/StudentRepository.java
+### /src/main/java/com/in28minutes/springboot/rest/example/foodbank/StudentRepository.java
 
 ```java
-package com.in28minutes.springboot.rest.example.student;
+package com.in28minutes.springboot.rest.example.foodbank;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long>{
+public interface StudentRepository extends JpaRepository<Fred, Long>{
 
 }
 ```
 ---
 
-### /src/main/java/com/in28minutes/springboot/rest/example/student/StudentResource.java
+### /src/main/java/com/in28minutes/springboot/rest/example/foodbank/StudentResource.java
 
 ```java
-package com.in28minutes.springboot.rest.example.student;
+package com.in28minutes.springboot.rest.example.foodbank;
 
 import java.net.URI;
 import java.util.List;
@@ -259,18 +259,18 @@ public class StudentResource {
 	private StudentRepository studentRepository;
 
 	@GetMapping("/students")
-	public List<Student> retrieveAllStudents() {
+	public List<Fred> retrieveAllStudents() {
 		return studentRepository.findAll();
 	}
 
 	@GetMapping("/students/{id}")
-	public Student retrieveStudent(@PathVariable long id) {
-		Optional<Student> student = studentRepository.findById(id);
+	public Fred retrieveStudent(@PathVariable long id) {
+		Optional<Fred> foodbank = studentRepository.findById(id);
 
-		if (!student.isPresent())
+		if (!foodbank.isPresent())
 			throw new StudentNotFoundException("id-" + id);
 
-		return student.get();
+		return foodbank.get();
 	}
 
 	@DeleteMapping("/students/{id}")
@@ -279,27 +279,27 @@ public class StudentResource {
 	}
 
 	@PostMapping("/students")
-	public ResponseEntity<Object> createStudent(@RequestBody Student student) {
-		Student savedStudent = studentRepository.save(student);
+	public ResponseEntity<Object> createStudent(@RequestBody Fred foodbank) {
+		Fred savedFoodBank = studentRepository.save(foodbank);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedStudent.getId()).toUri();
+				.buildAndExpand(savedFoodBank.getId()).toUri();
 
 		return ResponseEntity.created(location).build();
 
 	}
 	
 	@PutMapping("/students/{id}")
-	public ResponseEntity<Object> updateStudent(@RequestBody Student student, @PathVariable long id) {
+	public ResponseEntity<Object> updateStudent(@RequestBody Fred foodbank, @PathVariable long id) {
 
-		Optional<Student> studentOptional = studentRepository.findById(id);
+		Optional<Fred> studentOptional = studentRepository.findById(id);
 
 		if (!studentOptional.isPresent())
 			return ResponseEntity.notFound().build();
 
-		student.setId(id);
+		foodbank.setId(id);
 		
-		studentRepository.save(student);
+		studentRepository.save(foodbank);
 
 		return ResponseEntity.noContent().build();
 	}
@@ -316,10 +316,10 @@ public class StudentResource {
 ### /src/main/resources/data.sql
 
 ```
-insert into student
+insert into foodbank
 values(10001,'Ranga', 'E1234567');
 
-insert into student
+insert into foodbank
 values(10002,'Ravi', 'A1234568');
 ```
 ---

@@ -1,5 +1,3 @@
-insert into student
-values(10001,'Ranga', 'E1234567');
-
-insert into student
-values(10002,'Ravi', 'A1234568');
+insert into food_bank values(10001,'Highbury Roundhouse Youth & Community Centre, 71 Ronalds Rd, Highbury East, London N5 1XB', 51.5553423, -0.118211,'The Trussell Trust Food Bank');
+insert into food_bank values(10002,'Finsbury', 51.5481147, -0.1162108,'Hackney Foodbank');
+insert into food_bank values (10003,'Clifton Terrace, Finsbury Park, London N4 3JP', 51.565386, -0.108063, 'Fyfield Foodbank');
