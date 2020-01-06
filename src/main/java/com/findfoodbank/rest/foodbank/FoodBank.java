@@ -15,10 +15,13 @@ public class FoodBank {
 	@GeneratedValue
 	private Long id;
 	private String address;
+
+	/** for stoting the values correctly in mysql decimal type, 10,6 recommended by Google Maps API **/
 	@Column(precision = 10, scale = 6)
 	private BigDecimal latitude;
 	@Column(precision = 10, scale = 6)
 	private BigDecimal longitude;
+
 	private String name;
 
 	public FoodBank() {
@@ -51,8 +54,6 @@ public class FoodBank {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
 	public BigDecimal getLatitude() {
 		return latitude;
 	}
