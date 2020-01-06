@@ -34,22 +34,22 @@ public class FoodBankController {
 	private FoodBankRepository foodBankRepository;
 
 	@GetMapping("/food-bank")
-	public List<FoodBank> retrieveAllStudents() {
+	public List<FoodBank> retrieveAllFoodBanks() {
 		return foodBankRepository.findAll();
 	}
 
 	@GetMapping("/food-bank/{id}")
-	public FoodBank retrieveStudent(@PathVariable long id) {
-		Optional<FoodBank> student = foodBankRepository.findById(id);
+	public FoodBank retrieveFoodBank(@PathVariable long id) {
+		Optional<FoodBank> foodBank = foodBankRepository.findById(id);
 
-		if (!student.isPresent())
+		if (!foodBank.isPresent())
 			throw new FoodBankNotFoundException("id-" + id);
 
-		return student.get();
+		return foodBank.get();
 	}
 
 	@DeleteMapping("/food-bank/{id}")
-	public void deleteStudent(@PathVariable long id) {
+	public void deleteFoodBank(@PathVariable long id) {
 		foodBankRepository.deleteById(id);
 	}
 
@@ -61,7 +61,7 @@ public class FoodBankController {
 	 * @return
 	 */
 	@PostMapping("/food-bank")
-	public ResponseEntity<Object> createStudent(@RequestBody FoodBank foodbank) throws UnsupportedEncodingException, InterruptedException {
+	public ResponseEntity<Object> createFoodBank(@RequestBody FoodBank foodbank) throws UnsupportedEncodingException, InterruptedException {
 
 		FoodBank savedFoodBank = foodBankRepository.save(foodbank);
 
@@ -77,11 +77,11 @@ System.out.println("something");
 	}
 	
 	@PutMapping("/food-bank/{id}")
-	public ResponseEntity<Object> updateStudent(@RequestBody FoodBank foodbank, @PathVariable long id) {
+	public ResponseEntity<Object> updateFoodBank(@RequestBody FoodBank foodbank, @PathVariable long id) {
 
-		Optional<FoodBank> studentOptional = foodBankRepository.findById(id);
+		Optional<FoodBank> foodBankOptional = foodBankRepository.findById(id);
 
-		if (!studentOptional.isPresent())
+		if (!foodBankOptional.isPresent())
 			return ResponseEntity.notFound().build();
 
 		foodbank.setId(id);
