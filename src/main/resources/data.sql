@@ -1,3 +1,3 @@
-insert into food_bank values(10001,'Highbury Roundhouse Youth & Community Centre, 71 Ronalds Rd, Highbury East, London N5 1XB', 51.5553423, -0.118211,'The Trussell Trust Food Bank');
-insert into food_bank values(10002,'Finsbury', 51.5481147, -0.1162108,'Hackney Foodbank');
-insert into food_bank values (10003,'Clifton Terrace, Finsbury Park, London N4 3JP', 51.565386, -0.108063, 'Fyfield Foodbank');
+insert into food_bank (address, latitude, longitude, name) values('Highbury Roundhouse Youth & Community Centre, 71 Ronalds Rd, Highbury East, London N5 1XB', 51.5553423, -0.118211,'The Trussell Trust Food Bank');
+insert into food_bank (address, latitude, longitude, name) values('Finsbury', 51.5481147, -0.1162108,'Hackney Foodbank');
+insert into food_bank (address, latitude, longitude, name) values ('Clifton Terrace, Finsbury Park, London N4 3JP', 51.565386, -0.108063, 'Fyfield Foodbank');
