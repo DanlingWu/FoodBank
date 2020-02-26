@@ -31,9 +31,9 @@ Find the nearby FoodBanks by supplying params as below (distance is in miles).
 /food-bank/nearest/{lat}/{lng}/{distance}
 curl http://localhost:8080/food-bank/nearest/51.564089/-0.1126616/2
 ```
-###To do
-1. Stop duplicate entries
-2. Cache the Google Map API call to reduce usage
-3. Cache the results of the search to be more efficient
-4. Login and auth system for admin user 
+### To Do
+- Stop duplicate entries
+- Cache the Google Map API call to reduce usage
+- Cache the results of the search to be more efficient
+- Login and auth system for admin user 
 
