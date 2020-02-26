@@ -14,13 +14,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -33,11 +27,13 @@ public class FoodBankController {
 	@Autowired
 	private FoodBankRepository foodBankRepository;
 
+	@CrossOrigin
 	@GetMapping("/food-bank")
 	public List<FoodBank> retrieveAllFoodBanks() {
 		return foodBankRepository.findAll();
 	}
 
+	@CrossOrigin
 	@GetMapping("/food-bank/{id}")
 	public FoodBank retrieveFoodBank(@PathVariable long id) {
 		Optional<FoodBank> foodBank = foodBankRepository.findById(id);
@@ -91,6 +87,14 @@ System.out.println("something");
 		return ResponseEntity.noContent().build();
 	}
 
+	/**
+	 * Get lat and lng from user's phone/device with their permission.
+	 *
+	 * @param lat
+	 * @param lng
+	 * @param distance
+	 * @return
+	 */
 	@GetMapping("/food-bank/nearest/{lat}/{lng}/{distance}")
 	public List<FoodBank> findNearest(@PathVariable BigDecimal lat, @PathVariable BigDecimal lng, @PathVariable int distance) {
 
