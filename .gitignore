@@ -1,5 +1,7 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
+src/main/resources/application.properties
+application.properties
 
 ### STS ###
 .apt_generated
@@ -8,6 +10,7 @@ target/
 .project
 .settings
 .springBeans
+.properties
 
 ### IntelliJ IDEA ###
 .idea
