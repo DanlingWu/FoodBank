@@ -2,6 +2,7 @@ package com.findfoodbank.rest.foodbank;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ import java.util.Arrays;
 @Service
 public class FoodBankGeocodeService {
 
+    @Value("${spring.geocode.api.key}")
+    public String apiKey;
+
     /**
      * External API call is asynchronous so not to block the app or user.
      * @param foodbank
@@ -25,7 +29,7 @@ public class FoodBankGeocodeService {
     @Async("processExecutor")
     public void setGeoCode(FoodBank foodbank, FoodBankRepository repo) throws UnsupportedEncodingException {
         /** setup API call to Google geocode **/
-        String apiKey = "AIzaSyCeQirfQpcZQpfwuOy8EMgq4uVKl1tU90s";
+        String apiKey = this.apiKey;
         String addressEncoded = URLEncoder.encode(foodbank.getAddress(), "UTF-8");
         String apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?";
         apiUrl = apiUrl + "address=" + addressEncoded;
